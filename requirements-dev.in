@@ -1,0 +1,10 @@
+-r requirements.in
+requests_mock
+pytest
+pytest-testdox
+pytest-cov
+bandit
+safety
+black
+coverage
+flake8

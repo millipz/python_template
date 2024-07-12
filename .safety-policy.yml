@@ -1,0 +1,44 @@
+version: '3.0'
+
+security:
+  ignore-vulnerabilities:
+    70612:
+      reason: we do not use Jinja2 directly and do not allow user input. Jinja2 is only used for Safety
+      expires: '2025-01-01'
+
+scanning-settings:
+  max-depth: 6
+  exclude: []
+  include-files: []
+  system:
+    targets: []
+
+
+report:
+  dependency-vulnerabilities:
+    enabled: true
+    auto-ignore-in-report:
+      python:
+        environment-results: true
+        unpinned-requirements: true
+      cvss-severity: []
+
+
+fail-scan-with-exit-code:
+  dependency-vulnerabilities:
+    enabled: true
+    fail-on-any-of:
+      cvss-severity:
+        - high
+        - medium
+        - critical
+      exploitability:
+        - high
+        - medium
+        - critical
+
+security-updates:
+  dependency-vulnerabilities:
+    auto-security-updates-limit:
+      - patch
+
